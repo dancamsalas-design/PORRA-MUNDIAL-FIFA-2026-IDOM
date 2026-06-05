@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin - Porra Mundial FIFA 2026 (IDOM)</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Montserrat',sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(0,229,160,.06),transparent 50%),radial-gradient(ellipse at 80% 100%,rgba(255,59,92,.06),transparent 50%);pointer-events:none}
+.w{max-width:680px;margin:0 auto;padding:16px;position:relative;z-index:1}
+.cds{text-align:center;padding:14px 0 6px}
+.bl{font-size:36px;display:inline-block;animation:bn 2s ease-in-out infinite}
+@keyframes bn{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(180deg)}}
+.mt{font-size:clamp(1.5em,5vw,2.2em);font-weight:900;letter-spacing:3px;background:linear-gradient(90deg,#00e5a0,#fff,#ff3b5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:4px 0}
+.sb{color:rgba(255,255,255,.45);font-size:.8em;margin-bottom:2px}
+.cd{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.cb{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 6px 8px;min-width:66px;position:relative;overflow:hidden}
+.cb::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.cb:nth-child(1)::after{background:#00e5a0}.cb:nth-child(2)::after{background:#3b82f6}.cb:nth-child(3)::after{background:#f59e0b}.cb:nth-child(4)::after{background:#ff3b5c}
+.cv{font-size:clamp(1.4em,4vw,2em);font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.cb:nth-child(1) .cv{color:#00e5a0}.cb:nth-child(2) .cv{color:#3b82f6}.cb:nth-child(3) .cv{color:#fbbf24}.cb:nth-child(4) .cv{color:#ff3b5c}
+.cv.fl{animation:fp .4s ease-out}
+@keyframes fp{0%{transform:rotateX(80deg);opacity:0}60%{transform:rotateX(-5deg);opacity:1}100%{transform:rotateX(0)}}
+.cl{font-size:.55em;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.45);margin-top:5px;display:block}
+.fn{font-size:1.2em;font-weight:900;animation:pu 1.5s infinite;display:none}
+@keyframes pu{0%,100%{transform:scale(1)}50%{transform:scale(1.03);opacity:.85}}
+.sc{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+.si{background:rgba(255,255,255,.06);border-radius:6px;padding:4px 10px;font-size:.7em}
+.si .zn{color:rgba(255,255,255,.45);font-size:.65em;display:block}.si .tm{font-weight:700}
+.vi{font-size:.68em;color:rgba(255,255,255,.45);margin-top:3px}
+hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
+.badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:.65em;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.ba{background:rgba(255,59,92,.15);color:#ff3b5c}
+.bv{background:rgba(0,229,160,.12);color:#00e5a0}
+.st{text-align:center;font-size:1.3em;font-weight:900;margin-bottom:3px}
+.ss{text-align:center;color:rgba(255,255,255,.45);font-size:.78em;margin-bottom:14px}
+.mr{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.mr label{font-size:.72em;color:rgba(255,255,255,.45);display:block;margin-bottom:3px}
+.mr input,.mr textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 10px;color:#fff;font-family:inherit;font-size:.85em;outline:none;width:100%}
+.mr input:focus,.mr textarea:focus{border-color:#00e5a0}
+.mr .df{flex:0 0 170px}.mr .nf{flex:1;min-width:180px}
+.mr textarea{resize:vertical;min-height:36px;max-height:70px}
+.en{display:flex;align-items:center;gap:6px;margin-bottom:6px;padding:9px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px}
+.en:hover{border-color:rgba(255,255,255,.2)}
+.en.g1{border-left:3px solid #FFD700}.en.g2{border-left:3px solid #C0C0C0}.en.g3{border-left:3px solid #CD7F32}
+.po{font-weight:900;font-size:1em;min-width:24px;text-align:center}
+.md{font-size:1.1em;min-width:20px}
+.en input[type=text]{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 9px;color:#fff;font-family:inherit;font-size:.82em;flex:1;outline:none;min-width:0}
+.en input[type=text]:focus{border-color:#00e5a0}
+.en input[type=number]{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 9px;color:#FFD700;font-family:inherit;font-size:.85em;font-weight:800;width:65px;outline:none;text-align:center}
+.en input[type=number]:focus{border-color:#FFD700}
+.br{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.bt{padding:10px 14px;border:none;border-radius:10px;font-family:inherit;font-weight:700;font-size:.78em;cursor:pointer;flex:1;min-width:100px;text-align:center}
+.b1{background:#00e5a0;color:#000}.b2{background:#3b82f6;color:#fff}.b3{background:rgba(255,255,255,.1);color:#e2e8f0}.b4{background:rgba(255,59,92,.15);color:#ff3b5c}
+.hn{text-align:center;color:rgba(255,255,255,.45);font-size:.65em;margin-top:12px;line-height:1.5}
+.to{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#00e5a0;color:#000;padding:10px 22px;border-radius:10px;font-weight:700;font-size:.82em;opacity:0;transition:all .4s;z-index:999;pointer-events:none}
+.to.show{transform:translateX(-50%) translateY(0);opacity:1}
+</style>
+</head>
+<body>
+<div class="w">
+<section class="cds">
+<div class="bl">&#9917;</div>
+<h1 class="mt">MUNDIAL FIFA 2026</h1>
+<p class="sb">FIFA World Cup &#183; Canad&#225; &#183; M&#233;xico &#183; EE.UU.</p>
+<div class="cd" id="cd">
+ <div class="cb"><span class="cv" id="dd">--</span><span class="cl">D&#237;as</span></div>
+ <div class="cb"><span class="cv" id="hh">--</span><span class="cl">Horas</span></div>
+ <div class="cb"><span class="cv" id="mm">--</span><span class="cl">Minutos</span></div>
+ <div class="cb"><span class="cv" id="ss">--</span><span class="cl">Segundos</span></div>
+</div>
+<div class="fn" id="fn">&#127881; &#161;EL MUNDIAL HA COMENZADO! &#9917;&#127942;</div>
+<div class="sc">
+ <div class="si"><span class="zn">&#127466;&#127480; Espa&#241;a</span><span class="tm">21:00</span></div>
+ <div class="si"><span class="zn">&#127464;&#127476; Colombia</span><span class="tm">14:00</span></div>
+ <div class="si"><span class="zn">&#127474;&#127485; M&#233;xico</span><span class="tm">13:00</span></div>
+ <div class="si"><span class="zn">&#127462;&#127479; Argentina</span><span class="tm">16:00</span></div>
+</div>
+<p class="vi">&#128205; Estadio Azteca &#183; M&#233;xico vs Sud&#225;frica &#183; Jue 11 jun 2026</p>
+</section>
+<hr class="sp">
+<div style="text-align:center"><span class="badge ba">&#128274; Modo Administrador</span></div>
+<h2 class="st">&#127942; PORRA MUNDIAL FIFA 2026 (IDOM)</h2>
+<p class="ss">Actualiza el Top 10 &#183; 50 participantes</p>
+<div class="mr">
+ <div class="df"><label>&#128197; Fecha</label><input type="date" id="aDate"></div>
+ <div class="nf"><label>&#128221; Nota del d&#237;a</label><textarea id="aNote" placeholder="Ej: Tras la jornada 2..."></textarea></div>
+</div>
+<div class="en g1"><span class='po'>1</span><span class='md'>&#129351;</span><input type='text' id='an0' placeholder='Nombre del participante'><input type='number' id='ap0' placeholder='Pts' min='0' max='9999'></div>
+<div class="en g2"><span class='po'>2</span><span class='md'>&#129352;</span><input type='text' id='an1' placeholder='Nombre del participante'><input type='number' id='ap1' placeholder='Pts' min='0' max='9999'></div>
+<div class="en g3"><span class='po'>3</span><span class='md'>&#129353;</span><input type='text' id='an2' placeholder='Nombre del participante'><input type='number' id='ap2' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>4</span><span class='md'></span><input type='text' id='an3' placeholder='Nombre del participante'><input type='number' id='ap3' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>5</span><span class='md'></span><input type='text' id='an4' placeholder='Nombre del participante'><input type='number' id='ap4' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>6</span><span class='md'></span><input type='text' id='an5' placeholder='Nombre del participante'><input type='number' id='ap5' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>7</span><span class='md'></span><input type='text' id='an6' placeholder='Nombre del participante'><input type='number' id='ap6' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>8</span><span class='md'></span><input type='text' id='an7' placeholder='Nombre del participante'><input type='number' id='ap7' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>9</span><span class='md'></span><input type='text' id='an8' placeholder='Nombre del participante'><input type='number' id='ap8' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>10</span><span class='md'></span><input type='text' id='an9' placeholder='Nombre del participante'><input type='number' id='ap9' placeholder='Pts' min='0' max='9999'></div>
+
+<div class="br">
+ <button class="bt b1" onclick="saveAdmin()">&#128190; Guardar</button>
+ <button class="bt b2" onclick="sortAdmin()">&#128200; Ordenar</button>
+ <button class="bt b3" onclick="copyAdmin()">&#128203; Copiar texto</button>
+ <button class="bt b4" onclick="clearAdmin()">&#128465; Limpiar</button>
+</div>
+<p class="hn">&#128161; <b>Instrucciones</b>: Escribe nombres y puntos, pulsa Guardar.<br>
+Abre porra_visor.html para ver el ranking actualizado.</p>
+</div>
+<div class="to" id="to"></div>
+<script>
+try {
+  var TGT = new Date(Date.UTC(2026, 5, 11, 19, 0, 0));
+  var ppp = {};
+  function tickk() {
+    var diff = TGT.getTime() - (new Date()).getTime();
+    if (diff <= 0) {
+      document.getElementById("cd").style.display = "none";
+      document.getElementById("fn").style.display = "block";
+      return;
+    }
+    var dy = Math.floor(diff / 86400000);
+    var hr = Math.floor((diff % 86400000) / 3600000);
+    var mn = Math.floor((diff % 3600000) / 60000);
+    var sc = Math.floor((diff % 60000) / 1000);
+    var vv = {
+      dd: (dy < 10 ? "0" : "") + dy,
+      hh: (hr < 10 ? "0" : "") + hr,
+      mm: (mn < 10 ? "0" : "") + mn,
+      ss: (sc < 10 ? "0" : "") + sc
+    };
+    var kk = ["dd","hh","mm","ss"];
+    for (var i = 0; i < kk.length; i++) {
+      var el = document.getElementById(kk[i]);
+      if (vv[kk[i]] !== ppp[kk[i]]) {
+        el.textContent = vv[kk[i]];
+        el.classList.remove("fl");
+        void el.offsetWidth;
+        el.classList.add("fl");
+      }
+    }
+    ppp = vv;
+  }
+  tickk();
+  setInterval(tickk, 1000);
+} catch(e) {}
+</script>
+<script>
+var SK = "porra_idom_v3";
+
+function toast(msg) {
+  var t = document.getElementById("to");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(function() { t.classList.remove("show"); }, 2800);
+}
+
+function loadAdmin() {
+  try {
+    var raw = localStorage.getItem(SK);
+    if (!raw) return;
+    var obj = JSON.parse(raw);
+    if (obj.date) document.getElementById("aDate").value = obj.date;
+    if (obj.note) document.getElementById("aNote").value = obj.note;
+    if (obj.top) {
+      for (var i = 0; i < obj.top.length && i < 10; i++) {
+        document.getElementById("an" + i).value = obj.top[i].name || "";
+        if (obj.top[i].pts) document.getElementById("ap" + i).value = obj.top[i].pts;
+      }
+    }
+  } catch (e) {}
+}
+
+function readAdmin() {
+  var arr = [];
+  for (var i = 0; i < 10; i++) {
+    arr.push({
+      name: document.getElementById("an" + i).value.trim(),
+      pts: Number(document.getElementById("ap" + i).value) || 0
+    });
+  }
+  return {
+    date: document.getElementById("aDate").value,
+    note: document.getElementById("aNote").value.trim(),
+    top: arr
+  };
+}
+
+function saveAdmin() {
+  try {
+    localStorage.setItem(SK, JSON.stringify(readAdmin()));
+    toast("Guardado correctamente!");
+  } catch(e) {
+    toast("Error al guardar");
+  }
+}
+
+function sortAdmin() {
+  var obj = readAdmin();
+  obj.top.sort(function(a, b) { return b.pts - a.pts; });
+  for (var i = 0; i < 10; i++) {
+    document.getElementById("an" + i).value = obj.top[i].name || "";
+    document.getElementById("ap" + i).value = obj.top[i].pts || "";
+  }
+  toast("Ordenado por puntos!");
+}
+
+function copyAdmin() {
+  var obj = readAdmin();
+  var lines = [];
+  lines.push("PORRA MUNDIAL FIFA 2026 (IDOM)");
+  lines.push("Fecha: " + (obj.date || "Sin fecha"));
+  if (obj.note) lines.push(obj.note);
+  lines.push("--------------------");
+  for (var i = 0; i < obj.top.length; i++) {
+    if (!obj.top[i].name) continue;
+    lines.push((i + 1) + ". " + obj.top[i].name + " - " + obj.top[i].pts + " pts");
+  }
+  lines.push("--------------------");
+  lines.push("Participantes: 50");
+  var txt = lines.join(String.fromCharCode(10));
+  try {
+    navigator.clipboard.writeText(txt);
+    toast("Texto copiado! Pegalo en Teams");
+  } catch (e) {
+    var ta = document.createElement("textarea");
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    toast("Texto copiado!");
+  }
+}
+
+function clearAdmin() {
+  for (var i = 0; i < 10; i++) {
+    document.getElementById("an" + i).value = "";
+    document.getElementById("ap" + i).value = "";
+  }
+  document.getElementById("aDate").value = "";
+  document.getElementById("aNote").value = "";
+  localStorage.removeItem(SK);
+  toast("Limpiado!");
+}
+
+try { loadAdmin(); } catch(e) {}
+</script>
+</body>
+</html>
