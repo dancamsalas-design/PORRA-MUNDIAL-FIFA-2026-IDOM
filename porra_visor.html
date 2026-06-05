@@ -32,7 +32,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .vi{font-size:.68em;color:rgba(255,255,255,.45);margin-top:3px}
 hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 .badge{display:inline-block;padding:4px 12px;border-radius:6px;font-size:.65em;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
-.ba{background:rgba(255,59,92,.15);color:#ff3b5c}
 .bv{background:rgba(0,229,160,.12);color:#00e5a0}
 .st{text-align:center;font-size:1.3em;font-weight:900;margin-bottom:3px}
 .ss{text-align:center;color:rgba(255,255,255,.45);font-size:.78em;margin-bottom:14px}
@@ -69,6 +68,7 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 </head>
 <body>
 <div class="w">
+
 <section class="cds">
 <div class="bl">&#9917;</div>
 <h1 class="mt">MUNDIAL FIFA 2026</h1>
@@ -89,6 +89,7 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 <p class="vi">&#128205; Estadio Azteca &#183; M&#233;xico vs Sud&#225;frica &#183; Jue 11 jun 2026</p>
 </section>
 <hr class="sp">
+
 <div style="text-align:center"><span class="badge bv">&#128064; Clasificaci&#243;n en vivo</span></div>
 <h2 class="st">&#127942; PORRA MUNDIAL FIFA 2026 (IDOM)</h2>
 <p class="ss">Top 10 &#183; Ranking actualizado</p>
@@ -106,6 +107,7 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 <p class="ar">&#128260; Se actualiza cada 60 segundos &#183; <span id="LR"></span></p>
 <p class="ft">&#9917; Porra Mundial FIFA 2026 (IDOM)</p>
 </div>
+
 <script>
 try {
   var TGT = new Date(Date.UTC(2026, 5, 11, 19, 0, 0));
@@ -128,8 +130,9 @@ try {
   tickk(); setInterval(tickk, 1000);
 } catch(e) {}
 </script>
+
 <script>
-var RAW = "https://raw.githubusercontent.com/dancamsalas-design/PORRA-MUNDIAL-FIFA-2026-IDOM/main/data.json";
+var API = "https://api.github.com/repos/dancamsalas-design/PORRA-MUNDIAL-FIFA-2026-IDOM/contents/data.json";
 var xCls = ["x1","x2","x3","","","","","","",""];
 
 function drawViewer() {
@@ -143,12 +146,15 @@ function drawViewer() {
   if (lr) lr.textContent = "Recarga: " + rh + ":" + rmi;
 
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", RAW + "?t=" + now.getTime(), true);
+  xhr.open("GET", API + "?t=" + now.getTime(), true);
+  xhr.setRequestHeader("Accept", "application/vnd.github.v3+json");
   xhr.onload = function() {
     if (ld) ld.style.display = "none";
     if (xhr.status !== 200) { nd.style.display = "block"; return; }
     try {
-      var obj = JSON.parse(xhr.responseText);
+      var resp = JSON.parse(xhr.responseText);
+      var decoded = decodeURIComponent(escape(atob(resp.content.replace(/\n/g, ""))));
+      var obj = JSON.parse(decoded);
       if (!obj || !obj.top) { nd.style.display = "block"; return; }
       var any = false;
       for (var x = 0; x < obj.top.length; x++) { if (obj.top[x].name) { any = true; break; } }
