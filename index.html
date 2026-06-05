@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>PORRA MUNDIAL FIFA 2026 (IDOM)</title>
+<title>Porra Mundial FIFA 2026 (IDOM)</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Montserrat',sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(0,229,160,.06),transparent 50%),radial-gradient(ellipse at 80% 100%,rgba(255,59,92,.06),transparent 50%);pointer-events:none}
 .w{max-width:680px;margin:0 auto;padding:16px;position:relative;z-index:1}
-.warn{display:none;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:10px 14px;text-align:center;font-size:.72em;color:#fbbf24;margin-bottom:12px}
 .cds{text-align:center;padding:14px 0 6px}
 .bl{font-size:36px;display:inline-block;animation:bn 2s ease-in-out infinite}
 @keyframes bn{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(180deg)}}
@@ -91,13 +90,9 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 <body>
 <div class="w">
 
-<!-- WARNING BANNER (hidden, shown only if JS fails) -->
-<div class="warn" id="WN">&#9888; La cuenta regresiva no funciona en OneDrive/SharePoint. Aloja este archivo en <b>GitHub Pages</b> (gratis) y usa esa URL en la pesta&#241;a de Teams.</div>
-
-<!-- COUNTDOWN -->
 <section class="cds">
 <div class="bl">&#9917;</div>
-<h1 class="mt">MUNDIAL 2026</h1>
+<h1 class="mt">MUNDIAL FIFA 2026</h1>
 <p class="sb">FIFA World Cup &#183; Canad&#225; &#183; M&#233;xico &#183; EE.UU.</p>
 <div class="cd" id="cd">
  <div class="cb"><span class="cv" id="dd">--</span><span class="cl">D&#237;as</span></div>
@@ -117,7 +112,7 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 
 <hr class="sp">
 
-<!-- ADMIN -->
+<!-- ========== ADMIN ========== -->
 <div id="AP" style="display:none">
 <div style="text-align:center"><span class="badge ba">&#128274; Modo Administrador</span></div>
 <h2 class="st">&#127942; PORRA MUNDIAL FIFA 2026 (IDOM)</h2>
@@ -126,20 +121,31 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
  <div class="df"><label>&#128197; Fecha</label><input type="date" id="aDate"></div>
  <div class="nf"><label>&#128221; Nota del d&#237;a</label><textarea id="aNote" placeholder="Ej: Despu&#233;s de octavos..."></textarea></div>
 </div>
-<div id="AE"></div>
+
+<!-- 10 CAMPOS ESTATICOS -->
+<div class="en g1"><span class='po'>1</span><span class='md'>&#129351;</span><input type='text' id='an0' placeholder='Nombre del participante'><input type='number' id='ap0' placeholder='Pts' min='0' max='9999'></div>
+<div class="en g2"><span class='po'>2</span><span class='md'>&#129352;</span><input type='text' id='an1' placeholder='Nombre del participante'><input type='number' id='ap1' placeholder='Pts' min='0' max='9999'></div>
+<div class="en g3"><span class='po'>3</span><span class='md'>&#129353;</span><input type='text' id='an2' placeholder='Nombre del participante'><input type='number' id='ap2' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>4</span><span class='md'></span><input type='text' id='an3' placeholder='Nombre del participante'><input type='number' id='ap3' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>5</span><span class='md'></span><input type='text' id='an4' placeholder='Nombre del participante'><input type='number' id='ap4' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>6</span><span class='md'></span><input type='text' id='an5' placeholder='Nombre del participante'><input type='number' id='ap5' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>7</span><span class='md'></span><input type='text' id='an6' placeholder='Nombre del participante'><input type='number' id='ap6' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>8</span><span class='md'></span><input type='text' id='an7' placeholder='Nombre del participante'><input type='number' id='ap7' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>9</span><span class='md'></span><input type='text' id='an8' placeholder='Nombre del participante'><input type='number' id='ap8' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>10</span><span class='md'></span><input type='text' id='an9' placeholder='Nombre del participante'><input type='number' id='ap9' placeholder='Pts' min='0' max='9999'></div>
+
 <div class="br">
  <button class="bt b1" id="btnSave">&#128190; Guardar</button>
  <button class="bt b2" id="btnSort">&#128200; Ordenar</button>
  <button class="bt b3" id="btnCopy">&#128203; Copiar texto</button>
  <button class="bt b4" id="btnClear">&#128465; Limpiar</button>
 </div>
-<p class="hn">&#128161; <b>Instrucciones</b>: Edita el Top 10, pulsa Guardar.<br>
-La pesta&#241;a de Clasificaci&#243;n se refresca cada 30s.<br>
-Usa Copiar texto para pegarlo en el chat de Teams.<br><br>
-&#9888; Este archivo debe alojarse en <b>GitHub Pages</b>, no en OneDrive,<br>para que el JavaScript (countdown, botones) funcione.</p>
+<p class="hn">&#128161; <b>Instrucciones</b>: Escribe nombres y puntos, pulsa Guardar.<br>
+La pesta&#241;a Clasificaci&#243;n se refresca cada 30s autom&#225;ticamente.<br>
+Usa Copiar texto para pegarlo en el chat de Teams.</p>
 </div>
 
-<!-- VIEWER -->
+<!-- ========== VIEWER ========== -->
 <div id="VP" style="display:none">
 <div style="text-align:center"><span class="badge bv">&#128064; Clasificaci&#243;n en vivo</span></div>
 <h2 class="st">&#127942; PORRA MUNDIAL FIFA 2026 (IDOM)</h2>
@@ -156,24 +162,21 @@ Usa Copiar texto para pegarlo en el chat de Teams.<br><br>
  <p style="font-size:.8em;margin-top:6px">El administrador publicar&#225; el ranking pronto.</p>
 </div>
 <p class="ar">&#128260; Se actualiza cada 30 segundos &#183; <span id="LR"></span></p>
-<p class="ft">&#9917;PORRA MUNDIAL FIFA 2026 (IDOM) &#183; &#161;Vamos!</p>
+<p class="ft">&#9917; Porra Mundial FIFA 2026 (IDOM) &#183; &#161;Vamos!</p>
 </div>
 
 </div>
 <div class="to" id="to"></div>
 
 <script>
-// ====== COUNTDOWN ======
 var TGT = new Date(Date.UTC(2026, 5, 11, 19, 0, 0));
 var ppp = {};
-var cdOK = false;
 
 function tickk() {
   var diff = TGT.getTime() - (new Date()).getTime();
   if (diff <= 0) {
     document.getElementById("cd").style.display = "none";
     document.getElementById("fn").style.display = "block";
-    cdOK = true;
     return;
   }
   var dy = Math.floor(diff / 86400000);
@@ -197,50 +200,24 @@ function tickk() {
     }
   }
   ppp = vv;
-  cdOK = true;
 }
 
 tickk();
 setInterval(tickk, 1000);
 
-// Show warning if JS didnt run after 3 seconds
-setTimeout(function() {
-  if (!cdOK) {
-    document.getElementById("WN").style.display = "block";
-  }
-}, 3000);
-
-// ====== MODE ======
-var SK = "porra_v3";
+var SK = "porra_idom_v2";
 var isAdm = (window.location.search.indexOf("admin=1") !== -1);
 
 if (isAdm) {
   document.getElementById("AP").style.display = "block";
-  buildAdmin();
+  initAdmin();
 } else {
   document.getElementById("VP").style.display = "block";
   drawViewer();
   setInterval(drawViewer, 30000);
 }
 
-// ====== ADMIN ======
-var eCls = ["g1","g2","g3","","","","","","",""];
-
-function buildAdmin() {
-  var box = document.getElementById("AE");
-  for (var i = 0; i < 10; i++) {
-    var d = document.createElement("div");
-    d.className = "en" + (eCls[i] ? " " + eCls[i] : "");
-    var posH = "<span class='po'>" + (i + 1) + "</span>";
-    var mdH = "<span class='md'></span>";
-    if (i === 0) mdH = "<span class='md'>&#129351;</span>";
-    if (i === 1) mdH = "<span class='md'>&#129352;</span>";
-    if (i === 2) mdH = "<span class='md'>&#129353;</span>";
-    d.innerHTML = posH + mdH +
-      "<input type='text' id='an" + i + "' placeholder='Nombre del participante'>" +
-      "<input type='number' id='ap" + i + "' placeholder='Pts' min='0' max='9999'>";
-    box.appendChild(d);
-  }
+function initAdmin() {
   loadAdmin();
   document.getElementById("btnSave").onclick = saveAdmin;
   document.getElementById("btnSort").onclick = sortAdmin;
@@ -334,7 +311,6 @@ function clearAdmin() {
   toast("Limpiado!");
 }
 
-// ====== VIEWER ======
 var xCls = ["x1","x2","x3","","","","","","",""];
 
 function drawViewer() {
@@ -399,7 +375,6 @@ function drawViewer() {
   }
 }
 
-// ====== TOAST ======
 function toast(msg) {
   var t = document.getElementById("to");
   t.textContent = msg;
