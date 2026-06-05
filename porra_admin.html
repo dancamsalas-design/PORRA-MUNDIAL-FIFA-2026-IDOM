@@ -14,7 +14,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .bl{font-size:36px;display:inline-block;animation:bn 2s ease-in-out infinite}
 @keyframes bn{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(180deg)}}
 .mt{font-size:clamp(1.5em,5vw,2.2em);font-weight:900;letter-spacing:3px;background:linear-gradient(90deg,#00e5a0,#fff,#ff3b5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:4px 0}
-.sb{color:rgba(255,255,255,.45);font-size:.8em;margin-bottom:2px}
+.sb{color:rgba(255,255,255,.45);font-size:.8em}
 .cd{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}
 .cb{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 6px 8px;min-width:66px;position:relative;overflow:hidden}
 .cb::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
@@ -58,6 +58,10 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 .to{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#00e5a0;color:#000;padding:10px 22px;border-radius:10px;font-weight:700;font-size:.82em;opacity:0;transition:all .4s;z-index:999;pointer-events:none}
 .to.show{transform:translateX(-50%) translateY(0);opacity:1}
 .status{text-align:center;font-size:.7em;color:rgba(255,255,255,.35);margin-top:8px}
+.tkbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px;margin-bottom:14px;text-align:center}
+.tkbox input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 10px;color:#fff;font-family:inherit;font-size:.8em;width:100%;outline:none;margin:8px 0}
+.tkbox input:focus{border-color:#00e5a0}
+.tkbox .tklbl{font-size:.72em;color:rgba(255,255,255,.45)}
 </style>
 </head>
 <body>
@@ -84,37 +88,47 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 <hr class="sp">
 <div style="text-align:center"><span class="badge ba">&#128274; Modo Administrador</span></div>
 <h2 class="st">&#127942; PORRA MUNDIAL FIFA 2026 (IDOM)</h2>
+
+<!-- TOKEN PANEL -->
+<div id="tkPanel" class="tkbox">
+<p class="tklbl">&#128273; Necesitas un token de GitHub para guardar datos.</p>
+<p class="tklbl" style="margin-top:6px"><b>C&#243;mo crearlo (1 vez):</b></p>
+<p class="tklbl">1. Ve a github.com &#8594; Settings &#8594; Developer settings &#8594; Personal access tokens &#8594; Tokens (classic)</p>
+<p class="tklbl">2. Generate new token (classic)</p>
+<p class="tklbl">3. Marca SOLO &#10004; <b>repo</b> &#8594; Generate token</p>
+<p class="tklbl">4. Copia el token y p&#233;galo aqu&#237;:</p>
+<input type="password" id="tkInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+<button class="bt b1" onclick="saveToken()" style="margin-top:6px">&#128273; Guardar token</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" style="display:none">
 <p class="ss">Actualiza el Top 10 &#183; 50 participantes</p>
 <div class="mr">
  <div class="df"><label>&#128197; Fecha</label><input type="date" id="aDate"></div>
  <div class="nf"><label>&#128221; Nota del d&#237;a</label><textarea id="aNote" placeholder="Ej: Tras la jornada 2..."></textarea></div>
 </div>
-<div class="en g1"><span class='po'>1</span><span class='md'>&#129351;</span><input type='text' id='an0' placeholder='Nombre del participante'><input type='number' id='ap0' placeholder='Pts' min='0' max='9999'></div>
-<div class="en g2"><span class='po'>2</span><span class='md'>&#129352;</span><input type='text' id='an1' placeholder='Nombre del participante'><input type='number' id='ap1' placeholder='Pts' min='0' max='9999'></div>
-<div class="en g3"><span class='po'>3</span><span class='md'>&#129353;</span><input type='text' id='an2' placeholder='Nombre del participante'><input type='number' id='ap2' placeholder='Pts' min='0' max='9999'></div>
-<div class="en"><span class='po'>4</span><span class='md'></span><input type='text' id='an3' placeholder='Nombre del participante'><input type='number' id='ap3' placeholder='Pts' min='0' max='9999'></div>
-<div class="en"><span class='po'>5</span><span class='md'></span><input type='text' id='an4' placeholder='Nombre del participante'><input type='number' id='ap4' placeholder='Pts' min='0' max='9999'></div>
-<div class="en"><span class='po'>6</span><span class='md'></span><input type='text' id='an5' placeholder='Nombre del participante'><input type='number' id='ap5' placeholder='Pts' min='0' max='9999'></div>
-<div class="en"><span class='po'>7</span><span class='md'></span><input type='text' id='an6' placeholder='Nombre del participante'><input type='number' id='ap6' placeholder='Pts' min='0' max='9999'></div>
-<div class="en"><span class='po'>8</span><span class='md'></span><input type='text' id='an7' placeholder='Nombre del participante'><input type='number' id='ap7' placeholder='Pts' min='0' max='9999'></div>
-<div class="en"><span class='po'>9</span><span class='md'></span><input type='text' id='an8' placeholder='Nombre del participante'><input type='number' id='ap8' placeholder='Pts' min='0' max='9999'></div>
-<div class="en"><span class='po'>10</span><span class='md'></span><input type='text' id='an9' placeholder='Nombre del participante'><input type='number' id='ap9' placeholder='Pts' min='0' max='9999'></div>
+<div class="en g1"><span class='po'>1</span><span class='md'>&#129351;</span><input type='text' id='an0' placeholder='Nombre'><input type='number' id='ap0' placeholder='Pts' min='0' max='9999'></div>
+<div class="en g2"><span class='po'>2</span><span class='md'>&#129352;</span><input type='text' id='an1' placeholder='Nombre'><input type='number' id='ap1' placeholder='Pts' min='0' max='9999'></div>
+<div class="en g3"><span class='po'>3</span><span class='md'>&#129353;</span><input type='text' id='an2' placeholder='Nombre'><input type='number' id='ap2' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>4</span><span class='md'></span><input type='text' id='an3' placeholder='Nombre'><input type='number' id='ap3' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>5</span><span class='md'></span><input type='text' id='an4' placeholder='Nombre'><input type='number' id='ap4' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>6</span><span class='md'></span><input type='text' id='an5' placeholder='Nombre'><input type='number' id='ap5' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>7</span><span class='md'></span><input type='text' id='an6' placeholder='Nombre'><input type='number' id='ap6' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>8</span><span class='md'></span><input type='text' id='an7' placeholder='Nombre'><input type='number' id='ap7' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>9</span><span class='md'></span><input type='text' id='an8' placeholder='Nombre'><input type='number' id='ap8' placeholder='Pts' min='0' max='9999'></div>
+<div class="en"><span class='po'>10</span><span class='md'></span><input type='text' id='an9' placeholder='Nombre'><input type='number' id='ap9' placeholder='Pts' min='0' max='9999'></div>
 
 <div class="br">
- <button class="bt b1" onclick="saveAdmin()">&#128190; Guardar en nube</button>
+ <button class="bt b1" onclick="saveAdmin()">&#128190; Guardar</button>
  <button class="bt b2" onclick="sortAdmin()">&#128200; Ordenar</button>
  <button class="bt b3" onclick="copyAdmin()">&#128203; Copiar texto</button>
  <button class="bt b4" onclick="clearAdmin()">&#128465; Limpiar</button>
 </div>
-<div style="margin-top:10px;text-align:center">
- <button class="bt b3" onclick="copyBlobId()" style="flex:none;width:auto;padding:8px 16px;font-size:.7em">&#128279; Copiar Blob ID (para el visor)</button>
+<p class="status" id="statusTxt">...</p>
+<p class="hn"><button class="bt b4" onclick="changeToken()" style="flex:none;width:auto;padding:6px 12px;font-size:.65em;margin-top:8px">Cambiar token</button></p>
 </div>
-<p class="status" id="statusTxt">Cargando...</p>
-<p class="hn">&#128161; <b>Instrucciones</b>:<br>
-1. Escribe nombres y puntos<br>
-2. Pulsa &#171;Guardar en nube&#187;<br>
-3. La primera vez, copia el Blob ID y p&#233;galo en la URL del visor<br>
-4. Los datos se guardan en internet, no en tu navegador</p>
+
 </div>
 <div class="to" id="to"></div>
 <script>
@@ -123,66 +137,63 @@ try {
   var ppp = {};
   function tickk() {
     var diff = TGT.getTime() - (new Date()).getTime();
-    if (diff <= 0) {
-      document.getElementById("cd").style.display = "none";
-      document.getElementById("fn").style.display = "block";
-      return;
-    }
+    if (diff <= 0) { document.getElementById("cd").style.display = "none"; document.getElementById("fn").style.display = "block"; return; }
     var dy = Math.floor(diff / 86400000);
     var hr = Math.floor((diff % 86400000) / 3600000);
     var mn = Math.floor((diff % 3600000) / 60000);
     var sc = Math.floor((diff % 60000) / 1000);
-    var vv = {
-      dd: (dy < 10 ? "0" : "") + dy,
-      hh: (hr < 10 ? "0" : "") + hr,
-      mm: (mn < 10 ? "0" : "") + mn,
-      ss: (sc < 10 ? "0" : "") + sc
-    };
+    var vv = { dd: (dy<10?"0":"")+dy, hh: (hr<10?"0":"")+hr, mm: (mn<10?"0":"")+mn, ss: (sc<10?"0":"")+sc };
     var kk = ["dd","hh","mm","ss"];
     for (var i = 0; i < kk.length; i++) {
       var el = document.getElementById(kk[i]);
-      if (vv[kk[i]] !== ppp[kk[i]]) {
-        el.textContent = vv[kk[i]];
-        el.classList.remove("fl");
-        void el.offsetWidth;
-        el.classList.add("fl");
-      }
+      if (vv[kk[i]] !== ppp[kk[i]]) { el.textContent = vv[kk[i]]; el.classList.remove("fl"); void el.offsetWidth; el.classList.add("fl"); }
     }
     ppp = vv;
   }
-  tickk();
-  setInterval(tickk, 1000);
+  tickk(); setInterval(tickk, 1000);
 } catch(e) {}
 </script>
 <script>
-var BLOB_URL = "https://jsonblob.com/api/jsonBlob";
-var BLOB_ID = "";
+var REPO = "dancamsalas-design/PORRA-MUNDIAL-FIFA-2026-IDOM";
+var FILE = "data.json";
+var API = "https://api.github.com/repos/" + REPO + "/contents/" + FILE;
+var fileSha = "";
 
 function toast(msg) {
   var t = document.getElementById("to");
-  t.textContent = msg;
-  t.classList.add("show");
+  t.textContent = msg; t.classList.add("show");
   setTimeout(function() { t.classList.remove("show"); }, 3500);
 }
+function setStatus(msg) { var s = document.getElementById("statusTxt"); if (s) s.textContent = msg; }
 
-function setStatus(msg) {
-  var s = document.getElementById("statusTxt");
-  if (s) s.textContent = msg;
+function getToken() { return localStorage.getItem("gh_token") || ""; }
+
+function saveToken() {
+  var tk = document.getElementById("tkInput").value.trim();
+  if (!tk) { toast("Escribe el token primero"); return; }
+  localStorage.setItem("gh_token", tk);
+  toast("Token guardado!");
+  checkToken();
+}
+
+function checkToken() {
+  var tk = getToken();
+  if (tk) {
+    document.getElementById("tkPanel").style.display = "none";
+    document.getElementById("adminPanel").style.display = "block";
+    loadFromGH();
+  } else {
+    document.getElementById("tkPanel").style.display = "block";
+    document.getElementById("adminPanel").style.display = "none";
+  }
 }
 
 function readAdmin() {
   var arr = [];
   for (var i = 0; i < 10; i++) {
-    arr.push({
-      name: document.getElementById("an" + i).value.trim(),
-      pts: Number(document.getElementById("ap" + i).value) || 0
-    });
+    arr.push({ name: document.getElementById("an" + i).value.trim(), pts: Number(document.getElementById("ap" + i).value) || 0 });
   }
-  return {
-    date: document.getElementById("aDate").value,
-    note: document.getElementById("aNote").value.trim(),
-    top: arr
-  };
+  return { date: document.getElementById("aDate").value, note: document.getElementById("aNote").value.trim(), top: arr };
 }
 
 function fillForm(obj) {
@@ -198,69 +209,68 @@ function fillForm(obj) {
   } catch(e) {}
 }
 
-function saveAdmin() {
-  var data = JSON.stringify(readAdmin());
-  BLOB_ID = localStorage.getItem("blob_id") || "";
-
-  if (BLOB_ID) {
-    // UPDATE existing blob
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", BLOB_URL + "/" + BLOB_ID, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        toast("Guardado en la nube! Los visores se actualizan en segundos");
-        setStatus("Blob ID: " + BLOB_ID + " | Guardado OK");
-      } else {
-        toast("Error al guardar. Reintentando...");
-        localStorage.removeItem("blob_id");
-        saveAdmin();
-      }
-    };
-    xhr.onerror = function() { toast("Error de red. Intenta de nuevo."); };
-    xhr.send(data);
-  } else {
-    // CREATE new blob
-    var xhr2 = new XMLHttpRequest();
-    xhr2.open("POST", BLOB_URL, true);
-    xhr2.setRequestHeader("Content-Type", "application/json");
-    xhr2.onload = function() {
-      if (xhr2.status === 201) {
-        var loc = xhr2.getResponseHeader("Location");
-        if (loc) {
-          BLOB_ID = loc.split("/").pop();
-          localStorage.setItem("blob_id", BLOB_ID);
-          setStatus("Blob ID: " + BLOB_ID + " | Creado OK");
-          toast("Creado y guardado! Blob ID: " + BLOB_ID);
-        }
-      } else {
-        toast("Error al crear. Status: " + xhr2.status);
-      }
-    };
-    xhr2.onerror = function() { toast("Error de red. Intenta de nuevo."); };
-    xhr2.send(data);
-  }
-}
-
-function loadFromCloud() {
-  BLOB_ID = localStorage.getItem("blob_id") || "";
-  if (!BLOB_ID) {
-    setStatus("Sin datos en la nube. Guarda para crear.");
-    return;
-  }
+function loadFromGH() {
+  setStatus("Cargando datos...");
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", BLOB_URL + "/" + BLOB_ID, true);
-  xhr.setRequestHeader("Accept", "application/json");
+  xhr.open("GET", API, true);
+  xhr.setRequestHeader("Authorization", "Bearer " + getToken());
+  xhr.setRequestHeader("Accept", "application/vnd.github.v3+json");
   xhr.onload = function() {
     if (xhr.status === 200) {
       try {
-        var obj = JSON.parse(xhr.responseText);
+        var resp = JSON.parse(xhr.responseText);
+        fileSha = resp.sha;
+        var content = decodeURIComponent(escape(atob(resp.content.replace(/\n/g, ""))));
+        var obj = JSON.parse(content);
         fillForm(obj);
-        setStatus("Blob ID: " + BLOB_ID + " | Cargado OK");
-      } catch(e) {}
+        setStatus("Datos cargados OK");
+      } catch(e) { setStatus("Error al leer datos"); }
+    } else if (xhr.status === 404) {
+      setStatus("Sin datos aun. Guarda para crear.");
+      fileSha = "";
+    } else {
+      setStatus("Error: " + xhr.status);
     }
   };
+  xhr.onerror = function() { setStatus("Error de red"); };
   xhr.send();
+}
+
+function saveAdmin() {
+  setStatus("Guardando...");
+  var data = readAdmin();
+  var json = JSON.stringify(data);
+  var b64 = btoa(unescape(encodeURIComponent(json)));
+  var body = { message: "update ranking", content: b64 };
+  if (fileSha) body.sha = fileSha;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", API, true);
+  xhr.setRequestHeader("Authorization", "Bearer " + getToken());
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Accept", "application/vnd.github.v3+json");
+  xhr.onload = function() {
+    if (xhr.status === 200 || xhr.status === 201) {
+      try {
+        var resp = JSON.parse(xhr.responseText);
+        fileSha = resp.content.sha;
+      } catch(e) {}
+      toast("Guardado en GitHub!");
+      setStatus("Guardado OK");
+    } else if (xhr.status === 409) {
+      setStatus("Conflicto. Recargando...");
+      loadFromGH();
+    } else if (xhr.status === 401) {
+      setStatus("Token invalido. Genera uno nuevo.");
+      localStorage.removeItem("gh_token");
+      checkToken();
+    } else {
+      setStatus("Error: " + xhr.status);
+      toast("Error al guardar: " + xhr.status);
+    }
+  };
+  xhr.onerror = function() { setStatus("Error de red"); toast("Error de red"); };
+  xhr.send(JSON.stringify(body));
 }
 
 function sortAdmin() {
@@ -270,7 +280,7 @@ function sortAdmin() {
     document.getElementById("an" + i).value = obj.top[i].name || "";
     document.getElementById("ap" + i).value = obj.top[i].pts || "";
   }
-  toast("Ordenado por puntos!");
+  toast("Ordenado!");
 }
 
 function copyAdmin() {
@@ -282,45 +292,27 @@ function copyAdmin() {
   lines.push("--------------------");
   for (var i = 0; i < obj.top.length; i++) {
     if (!obj.top[i].name) continue;
-    lines.push((i + 1) + ". " + obj.top[i].name + " - " + obj.top[i].pts + " pts");
+    lines.push((i+1) + ". " + obj.top[i].name + " - " + obj.top[i].pts + " pts");
   }
   lines.push("--------------------");
   lines.push("Participantes: 50");
   var txt = lines.join(String.fromCharCode(10));
-  try {
-    navigator.clipboard.writeText(txt);
-    toast("Texto copiado! Pegalo en Teams");
-  } catch(e) {
-    var ta = document.createElement("textarea");
-    ta.value = txt; document.body.appendChild(ta);
-    ta.select(); document.execCommand("copy");
-    document.body.removeChild(ta);
-    toast("Texto copiado!");
-  }
-}
-
-function copyBlobId() {
-  BLOB_ID = localStorage.getItem("blob_id") || "";
-  if (!BLOB_ID) { toast("Primero guarda datos!"); return; }
-  try {
-    navigator.clipboard.writeText(BLOB_ID);
-    toast("Blob ID copiado: " + BLOB_ID);
-  } catch(e) {
-    toast("Blob ID: " + BLOB_ID);
+  try { navigator.clipboard.writeText(txt); toast("Copiado!"); } catch(e) {
+    var ta = document.createElement("textarea"); ta.value = txt;
+    document.body.appendChild(ta); ta.select(); document.execCommand("copy");
+    document.body.removeChild(ta); toast("Copiado!");
   }
 }
 
 function clearAdmin() {
-  for (var i = 0; i < 10; i++) {
-    document.getElementById("an" + i).value = "";
-    document.getElementById("ap" + i).value = "";
-  }
-  document.getElementById("aDate").value = "";
-  document.getElementById("aNote").value = "";
-  toast("Formulario limpiado!");
+  for (var i = 0; i < 10; i++) { document.getElementById("an" + i).value = ""; document.getElementById("ap" + i).value = ""; }
+  document.getElementById("aDate").value = ""; document.getElementById("aNote").value = "";
+  toast("Limpiado!");
 }
 
-try { loadFromCloud(); } catch(e) {}
+function changeToken() { localStorage.removeItem("gh_token"); checkToken(); }
+
+try { checkToken(); } catch(e) {}
 </script>
 </body>
 </html>
