@@ -68,6 +68,21 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 .ft{text-align:center;color:rgba(255,255,255,.45);font-size:.6em;margin-top:16px;line-height:1.5}
 .ar{text-align:center;font-size:.6em;color:rgba(255,255,255,.35);margin-top:6px}
 .loading{text-align:center;padding:30px;color:rgba(255,255,255,.45);font-size:.9em}
+.cd{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.cb{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 6px 8px;min-width:66px;position:relative;overflow:hidden}
+.cb::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.cb:nth-child(1)::after{background:#00e5a0}.cb:nth-child(2)::after{background:#3b82f6}.cb:nth-child(3)::after{background:#f59e0b}.cb:nth-child(4)::after{background:#ff3b5c}
+.cv{font-size:clamp(1.4em,4vw,2em);font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
+.cb:nth-child(1) .cv{color:#00e5a0}.cb:nth-child(2) .cv{color:#3b82f6}.cb:nth-child(3) .cv{color:#fbbf24}.cb:nth-child(4) .cv{color:#ff3b5c}
+.cv.fl{animation:fp .4s ease-out}
+@keyframes fp{0%{transform:rotateX(80deg);opacity:0}60%{transform:rotateX(-5deg);opacity:1}100%{transform:rotateX(0)}}
+.cl{font-size:.55em;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.45);margin-top:5px;display:block}
+.fn{font-size:1.2em;font-weight:900;animation:pu 1.5s infinite;display:none}
+@keyframes pu{0%,100%{transform:scale(1)}50%{transform:scale(1.03);opacity:.85}}
+.sc{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+.si{background:rgba(255,255,255,.06);border-radius:6px;padding:4px 10px;font-size:.7em}
+.si .zn{color:rgba(255,255,255,.45);font-size:.65em;display:block}.si .tm{font-weight:700}
+.vi{font-size:.68em;color:rgba(255,255,255,.45);margin-top:3px}
 </style>
 </head>
 <body>
@@ -77,6 +92,20 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 <div class="bl">&#9917;</div>
 <h1 class="mt">MUNDIAL FIFA 2026</h1>
 <p class="sb">FIFA World Cup &#183; Canad&#225; &#183; M&#233;xico &#183; EE.UU.</p>
+<div class="cd" id="cd">
+ <div class="cb"><span class="cv" id="dd">--</span><span class="cl">D&#237;as</span></div>
+ <div class="cb"><span class="cv" id="hh">--</span><span class="cl">Horas</span></div>
+ <div class="cb"><span class="cv" id="mm">--</span><span class="cl">Minutos</span></div>
+ <div class="cb"><span class="cv" id="ss">--</span><span class="cl">Segundos</span></div>
+</div>
+<div class="fn" id="fn">&#127881; &#161;EL MUNDIAL HA COMENZADO! &#9917;&#127942;</div>
+<div class="sc">
+ <div class="si"><span class="zn">&#127466;&#127480; Espa&#241;a</span><span class="tm">21:00</span></div>
+ <div class="si"><span class="zn">&#127464;&#127476; Colombia</span><span class="tm">14:00</span></div>
+ <div class="si"><span class="zn">&#127474;&#127485; M&#233;xico</span><span class="tm">13:00</span></div>
+ <div class="si"><span class="zn">&#127462;&#127479; Argentina</span><span class="tm">16:00</span></div>
+</div>
+<p class="vi">&#128205; Estadio Azteca &#183; M&#233;xico vs Sud&#225;frica &#183; Jue 11 jun 2026</p>
 </section>
 
 <!-- DYNAMIC MATCH COUNTDOWNS -->
@@ -101,6 +130,29 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 <p class="ar">&#128260; Se actualiza cada 60 segundos &#183; <span id="LR"></span></p>
 <p class="ft">&#9917; Porra Mundial FIFA 2026 (IDOM)</p>
 </div>
+
+<script>
+try {
+  var TGT = new Date(Date.UTC(2026, 5, 11, 19, 0, 0));
+  var ppp = {};
+  function tickk() {
+    var diff = TGT.getTime() - (new Date()).getTime();
+    if (diff <= 0) { document.getElementById("cd").style.display = "none"; document.getElementById("fn").style.display = "block"; return; }
+    var dy = Math.floor(diff / 86400000);
+    var hr = Math.floor((diff % 86400000) / 3600000);
+    var mn = Math.floor((diff % 3600000) / 60000);
+    var sc = Math.floor((diff % 60000) / 1000);
+    var vv = { dd: (dy<10?"0":"")+dy, hh: (hr<10?"0":"")+hr, mm: (mn<10?"0":"")+mn, ss: (sc<10?"0":"")+sc };
+    var kk = ["dd","hh","mm","ss"];
+    for (var i = 0; i < kk.length; i++) {
+      var el = document.getElementById(kk[i]);
+      if (vv[kk[i]] !== ppp[kk[i]]) { el.textContent = vv[kk[i]]; el.classList.remove("fl"); void el.offsetWidth; el.classList.add("fl"); }
+    }
+    ppp = vv;
+  }
+  tickk(); setInterval(tickk, 1000);
+} catch(e) {}
+</script>
 
 <script>
 var MATCHES = [
