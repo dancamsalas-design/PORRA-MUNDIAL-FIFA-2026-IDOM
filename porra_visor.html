@@ -14,7 +14,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .bl{font-size:36px;display:inline-block;animation:bn 2s ease-in-out infinite}
 @keyframes bn{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(180deg)}}
 .mt{font-size:clamp(1.5em,5vw,2.2em);font-weight:900;letter-spacing:3px;background:linear-gradient(90deg,#00e5a0,#fff,#ff3b5c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:4px 0}
-.sb{color:rgba(255,255,255,.45);font-size:.8em;margin-bottom:2px}
+.sb{color:rgba(255,255,255,.45);font-size:.8em}
 .cd{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:10px 0}
 .cb{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 6px 8px;min-width:66px;position:relative;overflow:hidden}
 .cb::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
@@ -102,10 +102,9 @@ hr.sp{border:none;height:1px;background:rgba(255,255,255,.1);margin:16px 0}
 <div class="nd" id="ND" style="display:none">
  <div class="ic">&#128202;</div>
  <p>No hay datos disponibles a&#250;n.</p>
- <p style="font-size:.8em;margin-top:6px">El administrador publicar&#225; el ranking pronto.</p>
 </div>
-<p class="ar">&#128260; Se actualiza cada 30 segundos &#183; <span id="LR"></span></p>
-<p class="ft">&#9917; Porra Mundial FIFA 2026 (IDOM) &#183; &#161;Vamos!</p>
+<p class="ar">&#128260; Se actualiza cada 60 segundos &#183; <span id="LR"></span></p>
+<p class="ft">&#9917; Porra Mundial FIFA 2026 (IDOM)</p>
 </div>
 <script>
 try {
@@ -113,99 +112,59 @@ try {
   var ppp = {};
   function tickk() {
     var diff = TGT.getTime() - (new Date()).getTime();
-    if (diff <= 0) {
-      document.getElementById("cd").style.display = "none";
-      document.getElementById("fn").style.display = "block";
-      return;
-    }
+    if (diff <= 0) { document.getElementById("cd").style.display = "none"; document.getElementById("fn").style.display = "block"; return; }
     var dy = Math.floor(diff / 86400000);
     var hr = Math.floor((diff % 86400000) / 3600000);
     var mn = Math.floor((diff % 3600000) / 60000);
     var sc = Math.floor((diff % 60000) / 1000);
-    var vv = {
-      dd: (dy < 10 ? "0" : "") + dy,
-      hh: (hr < 10 ? "0" : "") + hr,
-      mm: (mn < 10 ? "0" : "") + mn,
-      ss: (sc < 10 ? "0" : "") + sc
-    };
+    var vv = { dd: (dy<10?"0":"")+dy, hh: (hr<10?"0":"")+hr, mm: (mn<10?"0":"")+mn, ss: (sc<10?"0":"")+sc };
     var kk = ["dd","hh","mm","ss"];
     for (var i = 0; i < kk.length; i++) {
       var el = document.getElementById(kk[i]);
-      if (vv[kk[i]] !== ppp[kk[i]]) {
-        el.textContent = vv[kk[i]];
-        el.classList.remove("fl");
-        void el.offsetWidth;
-        el.classList.add("fl");
-      }
+      if (vv[kk[i]] !== ppp[kk[i]]) { el.textContent = vv[kk[i]]; el.classList.remove("fl"); void el.offsetWidth; el.classList.add("fl"); }
     }
     ppp = vv;
   }
-  tickk();
-  setInterval(tickk, 1000);
+  tickk(); setInterval(tickk, 1000);
 } catch(e) {}
 </script>
 <script>
-var BLOB_URL = "https://jsonblob.com/api/jsonBlob";
+var RAW = "https://raw.githubusercontent.com/dancamsalas-design/PORRA-MUNDIAL-FIFA-2026-IDOM/main/data.json";
 var xCls = ["x1","x2","x3","","","","","","",""];
 
-function getBlobId() {
-  // Try from URL hash first
-  var h = window.location.hash.slice(1);
-  if (h && h.length > 5) return h;
-  // Try from localStorage
-  var s = localStorage.getItem("blob_id");
-  if (s) return s;
-  return "";
-}
-
 function drawViewer() {
-  var bid = getBlobId();
   var bd = document.getElementById("BD");
   var nd = document.getElementById("ND");
   var ld = document.getElementById("LD");
   var now = new Date();
-  var rh = (now.getHours() < 10 ? "0" : "") + now.getHours();
-  var rmi = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+  var rh = (now.getHours()<10?"0":"") + now.getHours();
+  var rmi = (now.getMinutes()<10?"0":"") + now.getMinutes();
   var lr = document.getElementById("LR");
   if (lr) lr.textContent = "Recarga: " + rh + ":" + rmi;
 
-  if (!bid) {
-    if (ld) ld.style.display = "none";
-    nd.style.display = "block";
-    return;
-  }
-
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", BLOB_URL + "/" + bid, true);
-  xhr.setRequestHeader("Accept", "application/json");
+  xhr.open("GET", RAW + "?t=" + now.getTime(), true);
   xhr.onload = function() {
     if (ld) ld.style.display = "none";
     if (xhr.status !== 200) { nd.style.display = "block"; return; }
     try {
       var obj = JSON.parse(xhr.responseText);
       if (!obj || !obj.top) { nd.style.display = "block"; return; }
-
       var any = false;
-      for (var x = 0; x < obj.top.length; x++) {
-        if (obj.top[x].name) { any = true; break; }
-      }
+      for (var x = 0; x < obj.top.length; x++) { if (obj.top[x].name) { any = true; break; } }
       if (!any) { bd.innerHTML = ""; nd.style.display = "block"; return; }
       nd.style.display = "none";
 
       if (obj.date) {
         var pp = obj.date.split("-");
         var mo = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
-        document.getElementById("vDate").textContent = parseInt(pp[2]) + " " + mo[parseInt(pp[1]) - 1] + " " + pp[0];
+        document.getElementById("vDate").textContent = parseInt(pp[2]) + " " + mo[parseInt(pp[1])-1] + " " + pp[0];
       }
-
       var nb = document.getElementById("vNote");
-      if (obj.note) { nb.textContent = obj.note; nb.style.display = "block"; }
-      else { nb.style.display = "none"; }
+      if (obj.note) { nb.textContent = obj.note; nb.style.display = "block"; } else { nb.style.display = "none"; }
 
       var mx = 1;
-      for (var j = 0; j < obj.top.length; j++) {
-        if ((obj.top[j].pts || 0) > mx) mx = obj.top[j].pts;
-      }
+      for (var j = 0; j < obj.top.length; j++) { if ((obj.top[j].pts||0) > mx) mx = obj.top[j].pts; }
 
       bd.innerHTML = "";
       var cnt = 0;
@@ -219,30 +178,22 @@ function drawViewer() {
         if (cnt === 0) medalH = "&#129351;";
         if (cnt === 1) medalH = "&#129352;";
         if (cnt === 2) medalH = "&#129353;";
-        li.innerHTML = "<span class='rx'>" + (cnt + 1) + "</span>" +
+        li.innerHTML = "<span class='rx'>" + (cnt+1) + "</span>" +
           "<span class='rm'>" + medalH + "</span>" +
           "<span class='rn'>" + t.name + "</span>" +
           "<span class='rp'>" + t.pts + " pts</span>" +
           "<div class='rbw'><div class='rb' style='width:0%'></div></div>";
         bd.appendChild(li);
-        (function(el, p, dl) {
-          setTimeout(function() { el.querySelector(".rb").style.width = p + "%"; }, dl);
-        })(li, pct, 150 + (cnt * 80));
+        (function(el, p, dl) { setTimeout(function() { el.querySelector(".rb").style.width = p + "%"; }, dl); })(li, pct, 150 + (cnt * 80));
         cnt++;
       }
     } catch(e) { nd.style.display = "block"; }
   };
-  xhr.onerror = function() {
-    if (ld) ld.style.display = "none";
-    nd.style.display = "block";
-  };
+  xhr.onerror = function() { if (ld) ld.style.display = "none"; nd.style.display = "block"; };
   xhr.send();
 }
 
-try {
-  drawViewer();
-  setInterval(drawViewer, 30000);
-} catch(e) {}
+try { drawViewer(); setInterval(drawViewer, 60000); } catch(e) {}
 </script>
 </body>
 </html>
