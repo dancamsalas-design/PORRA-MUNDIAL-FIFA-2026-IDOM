@@ -163,7 +163,7 @@ hr.sp{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(2
 <div class="vn" id="vNote" style="display:none"></div>
 <div class="vm">
 <span>&#128197; <span id="vDate">--</span></span>
-<span>&#128101; 50 participantes</span>
+<span>&#128101; 26 participantes</span>
 <span id="LR">Recarga: --:--</span>
 </div>
 <div class="ld" id="LD"><div class="spinner"></div><span>Cargando datos...</span></div>
@@ -371,26 +371,22 @@ function renderMatches() {
     }
 
     if (nextMatch !== null && shown === 0) {
-      var nDiff = nextMatch.t - now;
-      var nDy = Math.floor(nDiff / 86400000);
-      var nHr = Math.floor((nDiff % 86400000) / 3600000);
-      var nMn = Math.floor((nDiff % 3600000) / 60000);
-      var nSc = Math.floor((nDiff % 60000) / 1000);
-      html += "<div class='mcard'>";
-      html += "<p class='mgrp'>&#9917; Proximo partido</p>";
-      html += "<div class='mcd'>";
-      html += "<div class='mcb'><span class='mcv'>" + pad2(nDy) + "</span><span class='mcl'>Dias</span></div>";
-      html += "<div class='mcb'><span class='mcv'>" + pad2(nHr) + "</span><span class='mcl'>Horas</span></div>";
-      html += "<div class='mcb'><span class='mcv'>" + pad2(nMn) + "</span><span class='mcl'>Min</span></div>";
-      html += "<div class='mcb'><span class='mcv'>" + pad2(nSc) + "</span><span class='mcl'>Seg</span></div>";
-      html += "</div>";
-      html += "<div class='mtz'>";
+      var nd2 = new Date(nextMatch.t);
+      var dias = ["Dom","Lun","Mar","Mie","Jue","Vie","Sab"];
+      var meses = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+      var fechaStr = dias[nd2.getUTCDay()] + " " + nd2.getUTCDate() + " " + meses[nd2.getUTCMonth()];
+      html += "<div class='mnext'>";
+      html += "<p style='font-size:1.2em;margin-bottom:8px'>&#9203;</p>";
+      html += "<p>No hay partidos en las pr&oacute;ximas 12 horas</p>";
+      html += "<p style='margin-top:10px;font-size:1em;color:#3b82f6'>Pr&oacute;ximo: " + getFlag(nextMatch.a) + " <b>" + nextMatch.a + "</b> vs <b>" + nextMatch.b + "</b> " + getFlag(nextMatch.b) + "</p>";
+      html += "<p style='font-size:.85em;margin-top:4px'>" + fechaStr + " &middot; Grupo " + nextMatch.g + "</p>";
+      html += "<p style='font-size:.7em;color:rgba(255,255,255,.25);margin-top:4px'>&#128205; " + nextMatch.v + "</p>";
+      html += "<div class='mtz' style='margin-top:8px'>";
       html += "<span class='mtzi'><span class='zn'>ES </span><span class='tm'>" + localTime(nextMatch.t, 2) + "</span></span>";
       html += "<span class='mtzi'><span class='zn'>CO </span><span class='tm'>" + localTime(nextMatch.t, -5) + "</span></span>";
       html += "<span class='mtzi'><span class='zn'>MX </span><span class='tm'>" + localTime(nextMatch.t, -6) + "</span></span>";
       html += "<span class='mtzi'><span class='zn'>AR </span><span class='tm'>" + localTime(nextMatch.t, -3) + "</span></span>";
       html += "</div>";
-      html += renderMatchList([nextMatch]);
       html += "</div>";
     }
 
