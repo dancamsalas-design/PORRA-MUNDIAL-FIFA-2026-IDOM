@@ -424,7 +424,7 @@ function drawViewer() {
     if (xhr.status !== 200) { nd.style.display = "block"; return; }
     try {
       var resp = JSON.parse(xhr.responseText);
-      var decoded = decodeURIComponent(escape(atob(resp.content.replace(/\\n/g, ""))));
+      var decoded = decodeURIComponent(escape(atob(resp.content.replace(/\n/g, ""))));
       var obj = JSON.parse(decoded);
       if (!obj || !obj.top) { nd.style.display = "block"; return; }
       var any = false;
