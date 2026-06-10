@@ -403,76 +403,67 @@ setInterval(renderMatches, 1000);
 </script>
 
 <script>
-var API = "https://raw.github.com/repos/dancamsalas-design/PORRA-MUNDIAL-FIFA-2026-IDOM/main/data.json";
-var xCls = ["x1","x2","x3","","","","","","",""];
-
-function drawViewer() {
-  var bd = document.getElementById("BD");
-  var nd = document.getElementById("ND");
-  var ld = document.getElementById("LD");
-  var now = new Date();
-  var rh = (now.getHours()<10?"0":"") + now.getHours();
-  var rmi = (now.getMinutes()<10?"0":"") + now.getMinutes();
-  var lr = document.getElementById("LR");
-  if (lr) lr.textContent = "Recarga: " + rh + ":" + rmi;
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", API + "?t=" + now.getTime(), true);
-  xhr.setRequestHeader("Accept", "application/vnd.github.v3+json");
-  xhr.onload = function() {
-    if (ld) ld.style.display = "none";
-    if (xhr.status !== 200) { nd.style.display = "block"; return; }
-    try {
-      var resp = JSON.parse(xhr.responseText);
-      var decoded = decodeURIComponent(escape(atob(resp.content.replace(/\n/g, ""))));
-      var obj = JSON.parse(decoded);
-      if (!obj || !obj.top) { nd.style.display = "block"; return; }
-      var any = false;
-      for (var x = 0; x < obj.top.length; x++) { if (obj.top[x].name) { any = true; break; } }
-      if (!any) { bd.innerHTML = ""; nd.style.display = "block"; return; }
-      nd.style.display = "none";
-
-      if (obj.date) {
-        var pp = obj.date.split("-");
-        var mo = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
-        document.getElementById("vDate").textContent = parseInt(pp[2]) + " " + mo[parseInt(pp[1])-1] + " " + pp[0];
-      }
-      var nb = document.getElementById("vNote");
-      if (obj.note) { nb.textContent = obj.note; nb.style.display = "block"; } else { nb.style.display = "none"; }
-
-      var mx = 1;
-      for (var j = 0; j < obj.top.length; j++) { if ((obj.top[j].pts||0) > mx) mx = obj.top[j].pts; }
-
-      bd.innerHTML = "";
-      var cnt = 0;
-      for (var i = 0; i < obj.top.length; i++) {
-        if (!obj.top[i].name) continue;
-        var t = obj.top[i];
-        var pct = mx > 0 ? Math.round((t.pts / mx) * 100) : 0;
-        var li = document.createElement("li");
-        li.className = "rw" + (xCls[cnt] ? " " + xCls[cnt] : "");
-        var medalH = "";
-        if (cnt === 0) medalH = "&#129351;";
-        if (cnt === 1) medalH = "&#129352;";
-        if (cnt === 2) medalH = "&#129353;";
-        if (cnt === 3) medalH = "&#11088;";
-        if (cnt === 4) medalH = "&#128293;";
-        li.innerHTML = "<span class='rx'>" + (cnt+1) + "</span>" +
-          "<span class='rm'>" + medalH + "</span>" +
-          "<span class='rn'>" + t.name + "</span>" +
-          "<span class='rp'>" + t.pts + " pts</span>" +
-          "<div class='rbw'><div class='rb' style='width:0%'></div></div>";
-        bd.appendChild(li);
-        (function(el, p, dl) { setTimeout(function() { el.querySelector(".rb").style.width = p + "%"; }, dl); })(li, pct, 150 + (cnt * 80));
-        cnt++;
-      }
-    } catch(e) { nd.style.display = "block"; }
-  };
-  xhr.onerror = function() { if (ld) ld.style.display = "none"; nd.style.display = "block"; };
-  xhr.send();
+var API="https://raw.githubusercontent.com/dancamsalas-design/PORRA-MUNDIAL-FIFA-2026-IDOM/main/data.json";
+var xCls=["x1","x2","x3","","","","","","",""];
+function drawViewer(){
+var bd=document.getElementById("BD");
+var nd=document.getElementById("ND");
+var ld=document.getElementById("LD");
+var now=new Date();
+var rh=(now.getHours()<10?"0":"")+now.getHours();
+var rmi=(now.getMinutes()<10?"0":"")+now.getMinutes();
+var lr=document.getElementById("LR");
+if(lr) lr.textContent="Recarga: "+rh+":"+rmi;
+var xhr=new XMLHttpRequest();
+xhr.open("GET",API+"?t="+now.getTime(),true);
+xhr.onload=function(){
+if(ld) ld.style.display="none";
+if(xhr.status!==200){nd.style.display="block";return;}
+try{
+var obj=JSON.parse(xhr.responseText);
+if(!obj||!obj.top){nd.style.display="block";return;}
+var any=false;
+for(var x=0;x<obj.top.length;x++){if(obj.top[x].name){any=true;break;}}
+if(!any){bd.innerHTML="";nd.style.display="block";return;}
+nd.style.display="none";
+if(obj.date){
+var pp=obj.date.split("-");
+var mo=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+document.getElementById("vDate").textContent=parseInt(pp[2])+" "+mo[parseInt(pp[1])-1]+" "+pp[0];
 }
-
-try { drawViewer(); setInterval(drawViewer, 60000); } catch(e) {}
+var nb=document.getElementById("vNote");
+if(obj.note){nb.textContent=obj.note;nb.style.display="block";}else{nb.style.display="none";}
+var mx=1;
+for(var j=0;j<obj.top.length;j++){if((obj.top[j].pts||0)>mx) mx=obj.top[j].pts;}
+bd.innerHTML="";
+var cnt=0;
+for(var i=0;i<obj.top.length;i++){
+if(!obj.top[i].name) continue;
+var t=obj.top[i];
+var pct=mx>0?Math.round((t.pts/mx)*100):0;
+var li=document.createElement("li");
+li.className="rw"+(xCls[cnt]?" "+xCls[cnt]:"");
+var medalH="";
+if(cnt===0) medalH="&#129351;";
+if(cnt===1) medalH="&#129352;";
+if(cnt===2) medalH="&#129353;";
+if(cnt===3) medalH="&#11088;";
+if(cnt===4) medalH="&#128293;";
+li.innerHTML="<span class='rx'>"+(cnt+1)+"</span>"+
+"<span class='rm'>"+medalH+"</span>"+
+"<span class='rn'>"+t.name+"</span>"+
+"<span class='rp'>"+t.pts+" pts</span>"+
+"<div class='rbw'><div class='rb' style='width:0%'></div></div>";
+bd.appendChild(li);
+(function(el,p,dl){setTimeout(function(){el.querySelector(".rb").style.width=p+"%";},dl);})(li,pct,150+(cnt*80));
+cnt++;
+}
+}catch(e){nd.style.display="block";}
+};
+xhr.onerror=function(){if(ld) ld.style.display="none";nd.style.display="block";};
+xhr.send();
+}
+try{drawViewer();setInterval(drawViewer,120000);}catch(e){}
 </script>
 </body>
 </html>
