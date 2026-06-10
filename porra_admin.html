@@ -295,7 +295,7 @@ function copyAdmin() {
     lines.push((i+1) + ". " + obj.top[i].name + " - " + obj.top[i].pts + " pts");
   }
   lines.push("--------------------");
-  lines.push("Participantes: 50");
+  lines.push("Participantes: 47");
   var txt = lines.join(String.fromCharCode(10));
   try { navigator.clipboard.writeText(txt); toast("Copiado!"); } catch(e) {
     var ta = document.createElement("textarea"); ta.value = txt;
