@@ -153,7 +153,7 @@ hr.sp{border:none;height:1px;background:linear-gradient(90deg,transparent,rgba(2
 <p class="vi">&#9917; Primer partido: 11 Jun &middot; M&eacute;xico vs Sud&aacute;frica &middot; Estadio Azteca 21:00 CEST</p>
 </section>
 
-<div id="MC" style="display:none"></div>
+<div id="MC"></div>
 
 <hr class="sp">
 
@@ -180,7 +180,6 @@ try {
   var ppp = {};
   function tickk() {
     var diff = TGT.getTime() - (new Date()).getTime();
-    var mcEl = document.getElementById("MC");
     var scEl = document.querySelector(".sc");
     var viEl = document.querySelector(".vi");
     if (diff <= 0) {
@@ -188,10 +187,8 @@ try {
       document.getElementById("fn").style.display = "block";
       if (scEl) scEl.style.display = "none";
       if (viEl) viEl.style.display = "none";
-      if (mcEl) mcEl.style.display = "block";
       return;
     }
-    if (mcEl) mcEl.style.display = "none";
     var dy = Math.floor(diff / 86400000);
     var hr = Math.floor((diff % 86400000) / 3600000);
     var mn = Math.floor((diff % 3600000) / 60000);
